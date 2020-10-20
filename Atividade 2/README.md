@@ -1,4 +1,4 @@
-# Introdução à Computação Gráfica - Atividade 1
+# Introdução à Computação Gráfica - Atividade 2
 <h2><b>Alunos:</b></h2>
 
 <h3>Epitácio Pessoa de Brito Neto</h3>
