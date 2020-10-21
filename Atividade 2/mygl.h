@@ -3,8 +3,10 @@
 
 #include <stdlib.h>
 #include <string.h>
-
+#include <math.h>
 #include "core.h"
+
+#define MODULO(x) ((x)>=0?(x):-(x)) 
 
 void InitMyGl(void); // Inicializa o frame buffer 
 unsigned char* GetFBMemPtr(void); // Retorna o ponteiro do framebuffer buffer

@@ -1,5 +1,11 @@
 #include "mygl.h"
 
+Color ColorWhite = {.red = 255, .green = 255, .blue = 255, .alpha = 255};
+Color ColorRed = {.red = 255, .green = 0, .blue = 0, .alpha = 255};
+Color ColorGreen = {.red = 0, .green = 255, .blue = 0, .alpha = 255};
+Color ColorBlue = {.red = 0, .green = 0, .blue = 255, .alpha = 255};
+Color ColorRandom = {.red = 100, .green = 59, .blue = 156, .alpha = 255};
+
 unsigned char* fb_ptr = NULL;
 
 void InitMyGl(void) {
@@ -23,27 +29,27 @@ void CloseMyGl(void) {
 }
 
 void PutPixel(int x, int y, Color *color){
-    const unsigned int startPoint = x * 4 + y * IMAGE_WIDTH * 4;
-    fb_ptr[startPoint] = color->red;
-    fb_ptr[startPoint + 1] = color->green;
-    fb_ptr[startPoint + 2] = color->blue;
-    fb_ptr[startPoint + 3] = color->alpha;
+    const unsigned int inicio = x * 4 + y * IMAGE_WIDTH * 4;
+    fb_ptr[inicio] = color->red;
+    fb_ptr[inicio + 1] = color->green;
+    fb_ptr[inicio + 2] = color->blue;
+    fb_ptr[inicio + 3] = color->alpha;
 }
 
-void ApplyInterpolation(Color *corAtual, Color cor1, Color cor2, float dist){
-    corAtual->red = (cor2.red*distancia) + ((1-distancia)*cor1.red);
-    corAtual->green = (cor2.green*distancia) + ((1-distancia)*cor1.green);
-    corAtual->blue = (cor2.blue*distancia) + ((1-distancia)*cor1.blue);
+void Interpolacao(Color *corAtual, Color cor1, Color cor2, float dist){
+    corAtual->red = (cor2.red*dist) + ((1-dist)*cor1.red);
+    corAtual->green = (cor2.green*dist) + ((1-dist)*cor1.green);
+    corAtual->blue = (cor2.blue*dist) + ((1-dist)*cor1.blue);
 }
 
-void DrawLine(void) {
+void DrawLine(int x0, int y0, int x1, int y1, Color *color1, Color *color2) {
 	
-	    int a;
-    bool invdraw;
+    int a;
+    int invdraw;
 
-    bool changeColor = false;
+    int changeColor = 0;
 
-    bool inv;
+    int inv;
 
 
     if (x1 < x0){
@@ -53,7 +59,7 @@ void DrawLine(void) {
         a = y0;
         y0 = y1;
         y1 = a;
-        changeColor = true;
+        changeColor = 1;
     }
 
     int dx = x1 - x0;
@@ -74,21 +80,21 @@ void DrawLine(void) {
     colorRef.alpha = 255; // Alpha sempre em 255 para ter a maior visibilidade
 
     if (dx == 0){       
-        inv = false;
+        inv = 0;
         if (dy < 0){
             int a;
             a = y0;
             y0 = y1;
             y1 = a;
-            inv = true;
+            inv = 1;
         }
                    
         for (int i = y0; i < y1; i++){
             Iter += 1/dist;
             if (!changeColor && !inv)
-                ApplyInterpolation(&colorRef, *color1, *color2, Iter);
+                Interpolacao(&colorRef, *color1, *color2, Iter);
             else
-                ApplyInterpolation(&colorRef, *color2, *color1, Iter);
+                Interpolacao(&colorRef, *color2, *color1, Iter);
             PutPixel(x0, i, &colorRef);
         }
     }else if (dy == 0){ 
@@ -102,21 +108,21 @@ void DrawLine(void) {
         for (int i = x0; i < x1; i++){
             Iter += 1/dist;
             if (!changeColor)
-                ApplyInterpolation(&colorRef, *color1, *color2, Iter);
+                Interpolacao(&colorRef, *color1, *color2, Iter);
             else
-                ApplyInterpolation(&colorRef, *color2, *color1, Iter);
+                Interpolacao(&colorRef, *color2, *color1, Iter);
             PutPixel(i, y0, &colorRef);
         }
     }else{
 
         if (MODULO(dy) > MODULO(dx)){ 
-            invdraw = false;
+            invdraw = 0;
             Iter += 1/dist;
 
             if (dy < 0){
                 dy *= -1;
 
-                invdraw = true;
+                invdraw = 1;
             }
             
             int d = 2 * dx - dy;
@@ -147,9 +153,9 @@ void DrawLine(void) {
                     }
                     Iter += 1/dist;
                     if (!changeColor)
-                        ApplyInterpolation(&colorRef, *color1, *color2, Iter);
+                        Interpolacao(&colorRef, *color1, *color2, Iter);
                     else
-                        ApplyInterpolation(&colorRef, *color2, *color1, Iter);
+                        Interpolacao(&colorRef, *color2, *color1, Iter);
                     PutPixel(x, y, &colorRef);
                 }
             }else{                 
@@ -171,20 +177,20 @@ void DrawLine(void) {
                     }
                     Iter += 1/dist;
                     if (!changeColor)
-                        ApplyInterpolation(&colorRef, *color1, *color2, Iter);
+                        Interpolacao(&colorRef, *color1, *color2, Iter);
                     else
-                        ApplyInterpolation(&colorRef, *color2, *color1, Iter);
+                        Interpolacao(&colorRef, *color2, *color1, Iter);
                     PutPixel(x, y, &colorRef);
                 }
             }
 
         } else{ 
-            invdraw = false;
+            invdraw = 0;
             Iter = 1/dist;
 
             if (dy < 0){
                 dy *= -1;
-                invdraw = true;
+                invdraw = 1;
             }
 
             int d = 2 * dy - dx; // d inicial
@@ -212,9 +218,9 @@ void DrawLine(void) {
                 Iter += 1/dist;
 
                 if (!changeColor)
-                    ApplyInterpolation(&colorRef, *color1, *color2, Iter);
+                    Interpolacao(&colorRef, *color1, *color2, Iter);
                 else
-                    ApplyInterpolation(&colorRef, *color2, *color1, Iter);
+                    Interpolacao(&colorRef, *color2, *color1, Iter);
                 PutPixel(x, y, &colorRef);
             }
         }
@@ -227,13 +233,28 @@ void DrawTriangle(int x1, int y1, Color *cor1, int x2, int y2, Color *cor2, int 
     DrawLine(x3, y3, x1, y1, cor3, cor1);
 }
 
-//
-// >>> Caro aluno: defina aqui as funções que você implementar <<<
-//
 
-// Definição da função que chamará as funções implementadas pelo aluno
 void MyGlDraw(void) {
-    //
-    // >>> Caro aluno: chame aqui as funções que você implementou <<<
-    //
+    /*PutPixel(100, 200, &ColorGreen);
+    PutPixel(150, 205, &ColorBlue);
+    PutPixel(200, 300, &ColorRed);
+    PutPixel(60, 150, &ColorWhite);
+    PutPixel(80, 100, &ColorRandom);
+
+    
+    DrawLine(0, 0, 5, 3, &ColorWhite, &ColorRed);
+    DrawLine(511, 0, 0, 511, &ColorWhite, &ColorGreen);
+    DrawLine(256, 127, 113, 383, &ColorWhite, &ColorBlue);
+    DrawLine(127, 256, 383, 256, &ColorWhite, &ColorRandom);
+    
+    //DrawLine(383, 0, 127, 511, &ColorWhite, &ColorRed);
+    //DrawLine(127, 0, 383, 511, &ColorWhite, &ColorBlue);
+
+
+     */
+     
+    DrawTriangle(127, 255, &ColorWhite, 158, 255, &ColorRandom, 179, 349, &ColorRed);
+    DrawTriangle(0, 255, &ColorRed, 127, 255, &ColorGreen, 127, 232, &ColorBlue);
+    DrawTriangle(383, 255, &ColorRandom, 320, 255, &ColorBlue, 383, 153, &ColorWhite);
+    
 }
