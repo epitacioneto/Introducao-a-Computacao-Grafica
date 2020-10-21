@@ -27,27 +27,36 @@ Chamada da função DrawLine():
 
 ![alt text](https://i.imgur.com/dQg7EKX.png)
 
+
 Resultado do teste da função DrawLine():
 
 
 ![alt text](https://i.imgur.com/wemHw2n.png)
+
 
 Chamada da função DrawTriangle():
 
 
 ![alt text](https://i.imgur.com/bK4g3bK.png)
 
+  
 Resultado do teste da função DrawTriangle():
 
 
 ![alt text](https://i.imgur.com/DpTTgbC.png)
+
 
 Chamada do segundo teste da função DrawTriangle():
 
 
 ![alt text](https://i.imgur.com/pj2wGdU.png)
 
+
 Resultado do segundo teste da função DrawTriangle():
 
 
 ![alt text](https://i.imgur.com/uoUcWEd.png)
+
+
+<h3>3. Conclusão e dificuldades encontradas</h3>
+Após conseguirmos nos adaptar à estrutura do código-fonte disponibilizada pelo professor, o processo de criação do projeto foi gradual, portanto, cada etapa que uma função foi implementada foi seguida de um teste de compilação até chegarmos nesse resultado final. No geral, o desenvolvimento do código-fonte foi bem sucedido quando vemos os poucos exemplos de testes colocados anteriormente, as funções criadas agiram de forma comportada nestes casos de teste, após conseguirmos chegar na versão final do código-fonte. Fora isso, a única alteração feita no código-fonte base, além dos arquivos mygl.c e mygl.h, foi uma alteração no arquivo Makefile, portanto, adicionamos uma flag -lm, de forma que o executável pudesse ser compilado corretamente.
