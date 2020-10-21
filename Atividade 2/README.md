@@ -60,3 +60,5 @@ Resultado do segundo teste da função DrawTriangle():
 
 <h3>3. Conclusão e dificuldades encontradas</h3>
 Após conseguirmos nos adaptar à estrutura do código-fonte disponibilizada pelo professor, o processo de criação do projeto foi gradual, portanto, cada etapa que uma função foi implementada foi seguida de um teste de compilação até chegarmos nesse resultado final. No geral, o desenvolvimento do código-fonte foi bem sucedido quando vemos os poucos exemplos de testes colocados anteriormente, as funções criadas agiram de forma comportada nestes casos de teste, após conseguirmos chegar na versão final do código-fonte. Fora isso, a única alteração feita no código-fonte base, além dos arquivos mygl.c e mygl.h, foi uma alteração no arquivo Makefile, portanto, adicionamos uma flag -lm, de forma que o executável pudesse ser compilado corretamente.
+
+![alt text](https://i.imgur.com/9fqbYeQ.png)
