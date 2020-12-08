@@ -126,7 +126,7 @@ glm::mat4 proj_mat = glm::make_mat4(proj_array);
 
 ```
 
-#### Foram alcançadas modificações demonstrados na imagem 6 derivado das mudanças das 3 matrizes
+#### Foram alcançadas modificações demonstrados na imagem 6 derivado das mudanças das 3 matrizes, como a inversão de triangulos, tamanho e perspectiva
 
 ![830f82ab-d088-4658-88c9-4abfc46402af](https://user-images.githubusercontent.com/28552417/101524020-29775300-3968-11eb-8020-8fec0f1f4968.jpg)
 
