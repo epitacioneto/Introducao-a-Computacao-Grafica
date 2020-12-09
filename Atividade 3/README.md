@@ -8,17 +8,17 @@
 ## Densenvolvimento
 
 #### No desenvolvimento foi utilizado o sistema operacional ArchLinux, foram encontrados problemas ao tentar importar suas dependências glm e GLEW, foi superado seguindo os passos orientados pelo professor na descrição do projeto.
-#### Após ser implementado o Template com as dependências utilizando o programa Sublime 3 e as orientações deixadas na descrição do projeto, utilizou-se o MakeFile para gerar a Imagem 1, então partiu-se para a implementação da atividade (2.5.1) que os resultados alcançados podem ser vistos na Imagem 2
+#### Após ser implementado o Template com as dependências utilizando o programa Sublime 3 e as orientações deixadas na descrição do projeto, utilizou-se o MakeFile para gerar a Imagem 1, então partiu-se para a implementação da atividade (2.5.1).
+
 
 
 ![59461e84-da2a-485c-b4fd-4f73b782391c](https://user-images.githubusercontent.com/28552417/101514721-5887c780-395c-11eb-8324-7af0d47d26a6.jpg)
 ###### Imagem 1
 
+# Atividade 1 : 
+# Escala
 
-![fd6ff6b1-5f8e-4412-94c9-1ceca800b007](https://user-images.githubusercontent.com/28552417/101514935-9258ce00-395c-11eb-8ff4-1de55f440051.jpg)
-###### Imagem 2
-
-#### Para implementação da atividade 2.5.1 de escala foi modificado a matriz model_array a seguir, modificano princripalmente o 1.0f para 0.333f e 1.0f para 1.5f
+#### Para implementação da atividade .1 de escala foi modificado a matriz model_array a seguir, utilizando os fatores de escala em (x, y, z) = (1/3, 3/2, 1)
 
 
 ```
@@ -31,8 +31,17 @@ float model_array[16] = {0.333f, 0.0f, 0.0f, 0.0f,
                              
 ###### Matrix 1
 
+#### Pode-se observar os resultados encontrados na Imagem 2 a seguir.
+
+![fd6ff6b1-5f8e-4412-94c9-1ceca800b007](https://user-images.githubusercontent.com/28552417/101514935-9258ce00-395c-11eb-8ff4-1de55f440051.jpg)
+###### Imagem 2
+
 #### Foi realizada modificação da escala na primeira coordenada, provocando o "enrugamento" da imagem. Desta forma modificando a escala da imagem.
-#### Foi realizada a mesma forma no atividade 2.5.2 para modificação de translação, fi modificada a coordenada refenrente e com a Matrix 2 a seguir se alcançou o resultado apresentado na Imagem 3.
+
+# Atividade 2 : 
+# Translação
+
+#### Foi realizada a mesma lógica na atividade .2 para modificação de translação, foi modificada a coordenada refenrente utilizando fator de translação em (x, y, z) = (1, 0, 0) com a Matrix 2 a seguir se alcançou o resultado apresentado na Imagem 3.
 
 ```
 
@@ -48,8 +57,11 @@ float model_array[16] = {1.0f, 0.0f, 0.0f, 0.0f,
 
 ##### Imagem 3
 
-#### Para a atividade 2.5.3 foi realizado um processo diferente, foi necessário modificar a matrix proj_array para realizar a modificação de perspectiva necessária na atividade.
-#### utilizando d = 1/-8 foi encontrada a Matrix 3 que foi utilizada e apresentou os resultados da Imagem 4
+# Atividade 3 : 
+# Perspectiva
+
+#### Para a atividade .3 foi realizado um processo diferente, foi necessário modificar a matrix proj_array para realizar a modificação de perspectiva necessária na atividade.
+#### utilizando d = 1/-8, a Matrix 3 que foi utilizada e apresentou os resultados da Imagem 4
 
 ```
 float proj_array[16] = {1.0f, 0.0f, 0.0f, 0.0f, 
@@ -64,7 +76,10 @@ float proj_array[16] = {1.0f, 0.0f, 0.0f, 0.0f,
  
  ##### Imagem 4
  
- #### Seguindo para a atividade 2.5.4 continuamos com a matrix proj_array da atividade anterior, foi criado a seguinte função para conseguirmos ajustar a posição de câmera que a imagem será vista 
+ # Atividade 4 : 
+# Posição da Câmera
+ 
+ #### Seguindo para a atividade .4 continuamos com a matrix proj_array da atividade anterior, foi criado a seguinte função para conseguirmos ajustar a posição de câmera que a imagem será vista
  
  ```
  float camera_position[3] = {-0.1f, 0.1f, 0.1f},
@@ -93,13 +108,18 @@ float camera_pointer[3] = {0.0f, 0.0f, -1.0f};
     
 
 ```
-#### Desta forma a imagem apresentada vai ter a posição de câmera modificada, modificando a perspectiva como mostrado na Imagem 5
+
+#### Utilizando vetor up da camera = (0, 1, 0) e ponto para o qual a câmera está apontando = (0, 0, -1)
+#### Desta forma a imagem apresentada vai ter a posição de câmera (-1/10, 1/10, 1/10), com modificando a perspectiva como mostrado na Imagem 5
 
 ![cb8ae793-b9e5-47a0-89dd-22d56a74fc11](https://user-images.githubusercontent.com/28552417/101523372-48c1b080-3967-11eb-9ad8-8a1251f31f04.jpg)
 
 ##### Imagem 5
 
-#### Para a atividade 2.5.5 foram realizadas modificações nas 3 matrizes model_array, view_array e proj_array como mostrado no código a seguir. 
+# Atividade 5 : 
+# Transformaçõees Livres
+
+#### Para a atividade .5 foram realizadas modificações nas 3 matrizes model_array, view_array e proj_array como mostrado no código a seguir. 
 
 
 ```
