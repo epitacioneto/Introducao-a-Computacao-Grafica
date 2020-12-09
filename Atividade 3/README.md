@@ -8,7 +8,7 @@
 ## Densenvolvimento
 
 #### No desenvolvimento foi utilizado o sistema operacional ArchLinux, foram encontrados problemas ao tentar importar suas dependências glm e GLEW, foi superado seguindo os passos orientados pelo professor na descrição do projeto.
-#### Após ser implementado o Template com as dependências utilizando o programa Sublime 3 e as orientações deixadas na descrição do projeto, utilizou-se o MakeFile para gerar a Imagem 1, então partiu-se para a implementação da atividade (2.5.1).
+#### Após ser implementado o Template com as dependências utilizando o programa Sublime 3 e as orientações deixadas na descrição do projeto, utilizou-se o MakeFile para gerar a Imagem 1, então partiu-se para a implementação da atividade .1.
 
 
 
@@ -48,7 +48,7 @@ float model_array[16] = {0.333f, 0.0f, 0.0f, 0.0f,
 float model_array[16] = {1.0f, 0.0f, 0.0f, 0.0f, 
                              0.0f, 1.0f, 0.0f, 0.0f, 
                              0.0f, 0.0f, 1.0f, 0.0f, 
-                             0.7f, 0.0f, 0.0f, 1.0f};
+                             1.0f, 0.0f, 0.0f, 1.0f};
 ```
 
 ##### Matrix 2
@@ -61,7 +61,7 @@ float model_array[16] = {1.0f, 0.0f, 0.0f, 0.0f,
 # Perspectiva
 
 #### Para a atividade .3 foi realizado um processo diferente, foi necessário modificar a matrix proj_array para realizar a modificação de perspectiva necessária na atividade.
-#### utilizando d = 1/-8, a Matrix 3 que foi utilizada e apresentou os resultados da Imagem 4
+#### utilizando d = 1/8, a Matrix 3 que foi utilizada e apresentou os resultados da Imagem 4
 
 ```
 float proj_array[16] = {1.0f, 0.0f, 0.0f, 0.0f, 
@@ -82,9 +82,9 @@ float proj_array[16] = {1.0f, 0.0f, 0.0f, 0.0f,
  #### Seguindo para a atividade .4 continuamos com a matrix proj_array da atividade anterior, foi criado a seguinte função para conseguirmos ajustar a posição de câmera que a imagem será vista
  
  ```
- float camera_position[3] = {-0.1f, 0.1f, 0.1f},
-float camera_up[3] = {0.0f, 1.0f, 0.0f},
-float camera_pointer[3] = {0.0f, 0.0f, -1.0f};
+ float camera_position[3] = {-0.1f, 0.1f, 0.1f}, ## (-1/10, 1/10, 1/10)
+float camera_up[3] = {0.0f, 1.0f, 0.0f}, ## (0, 1, 0)
+float camera_pointer[3] = {0.0f, 0.0f, -1.0f}; ## (0, 0, -1)
           
     glm::vec3 cam_pos  = glm::make_vec3(camera_pos);
     glm::vec3 cam_up   = glm::make_vec3(camera_up);
@@ -117,7 +117,7 @@ float camera_pointer[3] = {0.0f, 0.0f, -1.0f};
 ##### Imagem 5
 
 # Atividade 5 : 
-# Transformaçõees Livres
+# Transformações Livres
 
 #### Para a atividade .5 foram realizadas modificações nas 3 matrizes model_array, view_array e proj_array como mostrado no código a seguir. 
 
